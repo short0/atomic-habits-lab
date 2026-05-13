@@ -74,14 +74,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
+      { title: "Atomic Habits Lab" },
       { name: "description", content: "Atomic Habits Lab — design better habits with the cue/craving/response/reward loop and the Four Laws of Behavior Change." },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Atomic Habits Lab" },
-      { property: "og:description", content: "A calm, minimalist sandbox for designing better habits." },
+      { property: "og:description", content: "Atomic Habits Lab — design better habits with the cue/craving/response/reward loop and the Four Laws of Behavior Change." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Atomic Habits Lab" },
+      { name: "twitter:description", content: "Atomic Habits Lab — design better habits with the cue/craving/response/reward loop and the Four Laws of Behavior Change." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e9a1e09f-ba6a-423e-b844-9c181662a56b/id-preview-5e8d37ed--d71b2aa8-82cd-444e-b053-0aac4739ecee.lovable.app-1778647575668.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e9a1e09f-ba6a-423e-b844-9c181662a56b/id-preview-5e8d37ed--d71b2aa8-82cd-444e-b053-0aac4739ecee.lovable.app-1778647575668.png" },
     ],
     links: [
       {
