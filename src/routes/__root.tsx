@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { HabitsProvider } from "@/lib/habits/HabitsProvider";
+import { AppHeader } from "@/components/app-header";
 
 function NotFoundComponent() {
   return (
@@ -73,10 +75,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { name: "description", content: "Atomic Habits Lab — design better habits with the cue/craving/response/reward loop and the Four Laws of Behavior Change." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Atomic Habits Lab" },
+      { property: "og:description", content: "A calm, minimalist sandbox for designing better habits." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -113,7 +115,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <HabitsProvider>
+        <div className="min-h-screen bg-background text-foreground">
+          <AppHeader />
+          <Outlet />
+        </div>
+      </HabitsProvider>
     </QueryClientProvider>
   );
 }
