@@ -12,7 +12,6 @@ export const Route = createFileRoute("/")({
         content:
           "A minimalist sandbox to design habits using the cue/craving/response/reward loop and the Four Laws of Behavior Change.",
       },
-      { property: "og:title", content: "Atomic Habits Lab" },
       { property: "og:title", content: "Atomic Habits Lab — Design better habits, calmly" },
       {
         property: "og:description",
