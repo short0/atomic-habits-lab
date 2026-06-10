@@ -13,6 +13,7 @@ export const Route = createFileRoute("/")({
           "A minimalist sandbox to design habits using the cue/craving/response/reward loop and the Four Laws of Behavior Change.",
       },
       { property: "og:title", content: "Atomic Habits Lab" },
+      { property: "og:title", content: "Atomic Habits Lab — Design better habits, calmly" },
       {
         property: "og:description",
         content: "Design tiny, repeatable habits using the Four Laws of Behavior Change.",
@@ -40,7 +41,7 @@ function Index() {
             <Sparkles className="h-3 w-3" /> Inspired by Atomic Habits
           </p>
           <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-            Design tiny habits that quietly compound.
+            Atomic Habits Lab — Design tiny habits that quietly compound.
           </h1>
           <p className="mt-5 text-pretty text-base text-muted-foreground sm:text-lg">
             Atomic Habits Lab is a calm sandbox for designing the cue, craving, response, and reward

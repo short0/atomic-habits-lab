@@ -77,12 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Atomic Habits Lab" },
       { name: "description", content: "Atomic Habits Lab — design better habits with the cue/craving/response/reward loop and the Four Laws of Behavior Change." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Atomic Habits Lab" },
+      { property: "og:title", content: "Atomic Habits Lab — Habit Design Sandbox" },
       { property: "og:description", content: "Atomic Habits Lab — design better habits with the cue/craving/response/reward loop and the Four Laws of Behavior Change." },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Atomic Habits Lab" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Atomic Habits Lab" },
+      { name: "twitter:title", content: "Atomic Habits Lab — Habit Design Sandbox" },
       { name: "twitter:description", content: "Atomic Habits Lab — design better habits with the cue/craving/response/reward loop and the Four Laws of Behavior Change." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e9a1e09f-ba6a-423e-b844-9c181662a56b/id-preview-5e8d37ed--d71b2aa8-82cd-444e-b053-0aac4739ecee.lovable.app-1778647575668.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e9a1e09f-ba6a-423e-b844-9c181662a56b/id-preview-5e8d37ed--d71b2aa8-82cd-444e-b053-0aac4739ecee.lovable.app-1778647575668.png" },
@@ -91,6 +92,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              name: "Atomic Habits Lab",
+              url: "https://habit-design-studio.lovable.app",
+            },
+            {
+              "@type": "WebSite",
+              name: "Atomic Habits Lab",
+              url: "https://habit-design-studio.lovable.app",
+              description:
+                "A calm sandbox for designing habits using the cue/craving/response/reward loop and the Four Laws of Behavior Change.",
+            },
+          ],
+        }),
       },
     ],
   }),
