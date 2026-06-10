@@ -75,9 +75,12 @@ function LearnPage() {
         </p>
       </Section>
 
-      <div className="mt-12 flex justify-center">
+      <div className="mt-12 flex flex-wrap justify-center gap-3">
         <Button asChild>
           <Link to="/lab">Try it in the Lab</Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link to="/learn/habit-stacking">Read: Habit Stacking guide</Link>
         </Button>
       </div>
     </main>
