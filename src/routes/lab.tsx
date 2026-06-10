@@ -28,6 +28,7 @@ export const Route = createFileRoute("/lab")({
 function LabPage() {
   return (
     <main className="mx-auto max-w-7xl px-3 py-4 sm:px-6 sm:py-6">
+      <h1 className="sr-only">Atomic Habits Lab — Habit Design Sandbox</h1>
       <div className="grid gap-4 lg:grid-cols-[260px_1fr_320px]">
         <LeftPanel />
         <CenterPanel />
@@ -378,7 +379,7 @@ function Panel({
     <section className="rounded-xl border border-border bg-card p-4 shadow-[var(--shadow-soft)]">
       <header className="mb-3 flex items-start justify-between gap-2">
         <div>
-          <h2 className="text-sm font-semibold tracking-tight">{title}</h2>
+          <h3 className="text-sm font-semibold tracking-tight">{title}</h3>
           {subtitle ? <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p> : null}
         </div>
         {action}

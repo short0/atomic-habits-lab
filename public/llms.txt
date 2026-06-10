@@ -1,0 +1,12 @@
+# Atomic Habits Lab
+
+> A calm, minimalist sandbox for designing habits using the cue/craving/response/reward loop and the Four Laws of Behavior Change.
+
+Atomic Habits Lab helps students, professionals, creators, and anyone else design tiny, repeatable habits and stress-test them against the Four Laws (make it obvious, attractive, easy, satisfying). All data is stored locally in the browser — no account required.
+
+## Pages
+
+- [Home](/): Overview, presets, and how the lab works.
+- [Lab](/lab): Three-panel sandbox to build a habit loop, apply the Four Laws, and track streaks.
+- [Learn](/learn): Plain-language explanations of the habit loop, the Four Laws, and identity-based habits.
+- [Habit Stacking guide](/learn/habit-stacking): How to use the "After [Current Habit], I will [New Habit]" formula.
