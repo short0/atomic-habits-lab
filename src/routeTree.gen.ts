@@ -9,10 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as LabRouteImport } from './routes/lab'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LearnHabitStackingRouteImport } from './routes/learn.habit-stacking'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnRoute = LearnRouteImport.update({
   id: '/learn',
   path: '/learn',
@@ -28,39 +35,64 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LearnHabitStackingRoute = LearnHabitStackingRouteImport.update({
+  id: '/habit-stacking',
+  path: '/habit-stacking',
+  getParentRoute: () => LearnRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/lab': typeof LabRoute
-  '/learn': typeof LearnRoute
+  '/learn': typeof LearnRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/learn/habit-stacking': typeof LearnHabitStackingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/lab': typeof LabRoute
-  '/learn': typeof LearnRoute
+  '/learn': typeof LearnRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/learn/habit-stacking': typeof LearnHabitStackingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/lab': typeof LabRoute
-  '/learn': typeof LearnRoute
+  '/learn': typeof LearnRouteWithChildren
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/learn/habit-stacking': typeof LearnHabitStackingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/lab' | '/learn'
+  fullPaths: '/' | '/lab' | '/learn' | '/sitemap.xml' | '/learn/habit-stacking'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/lab' | '/learn'
-  id: '__root__' | '/' | '/lab' | '/learn'
+  to: '/' | '/lab' | '/learn' | '/sitemap.xml' | '/learn/habit-stacking'
+  id:
+    | '__root__'
+    | '/'
+    | '/lab'
+    | '/learn'
+    | '/sitemap.xml'
+    | '/learn/habit-stacking'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LabRoute: typeof LabRoute
-  LearnRoute: typeof LearnRoute
+  LearnRoute: typeof LearnRouteWithChildren
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn': {
       id: '/learn'
       path: '/learn'
@@ -82,14 +114,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/learn/habit-stacking': {
+      id: '/learn/habit-stacking'
+      path: '/habit-stacking'
+      fullPath: '/learn/habit-stacking'
+      preLoaderRoute: typeof LearnHabitStackingRouteImport
+      parentRoute: typeof LearnRoute
+    }
   }
 }
+
+interface LearnRouteChildren {
+  LearnHabitStackingRoute: typeof LearnHabitStackingRoute
+}
+
+const LearnRouteChildren: LearnRouteChildren = {
+  LearnHabitStackingRoute: LearnHabitStackingRoute,
+}
+
+const LearnRouteWithChildren = LearnRoute._addFileChildren(LearnRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LabRoute: LabRoute,
-  LearnRoute: LearnRoute,
+  LearnRoute: LearnRouteWithChildren,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
